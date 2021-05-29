@@ -1,0 +1,23 @@
+<%= form_tag deals_path do %>
+    <label>Deal Name:</label><br>
+    <%= text_field_tag :'deal[name]'%><br><br>
+    <label>Industry:</label><br><br>
+    <label>Entry Cash Flow ($mm):</label><br>
+    <%= number_field_tag :'deal[entry_cash]'%><br><br><br>
+
+    <label>Interim Growth Rate (%):</label><br>
+    <%= number_field_tag :'deal[interim_growth]'%><br><br><br>
+
+    <label>Terminal Growth Rate (%):</label><br>
+    <%= number_field_tag :'deal[terminal_growth]'%><br><br><br>
+
+    <label>Discount Rate (%):</label><br>
+    <%= number_field_tag :'deal[discount_rate]'%><br><br><br>
+
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <input type="submit" name="commit" value="Submit Deal">
+<% end %>
+
+
+<%= params.inspect %>

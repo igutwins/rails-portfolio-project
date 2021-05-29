@@ -2,13 +2,17 @@ class DealsController < ActionController::Base
 
     def create
         @deal = Deal.new
-        @deal.name = params[:name]
-        @deal.entry_cash = params[:entry_cash]
-        @deal.interim_growth = params[:interim_growth]
-        @deal.terminal_growth = params[:terminal_growth]
-        @deal.discount_rate = params[:discount_rate]
+        @deal.name = params[:deal][:name]
+        @deal.entry_cash = params[:deal][:entry_cash]
+        @deal.interim_growth = params[:deal][:interim_growth]
+        @deal.terminal_growth = params[:deal][:terminal_growth]
+        @deal.discount_rate = params[:deal][:discount_rate]
         @deal.save
         redirect_to deal_path(@deal)
     end
 
-end 
+    def show
+        @deal = Deal.find(params[:id])
+    end
+
+end
