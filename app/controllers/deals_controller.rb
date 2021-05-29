@@ -7,6 +7,7 @@ class DealsController < ActionController::Base
         @deal.interim_growth = params[:deal][:interim_growth]
         @deal.terminal_growth = params[:deal][:terminal_growth]
         @deal.discount_rate = params[:deal][:discount_rate]
+        @deal.npv = @deal.npv_func
         @deal.save
         redirect_to deal_path(@deal)
     end
