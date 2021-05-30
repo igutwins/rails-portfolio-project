@@ -3,4 +3,6 @@
 
 <%= link_to 'Back to Deals', deals_path %><br>
 
-<%= link_to 'Edit Deal', edit_deal_path(@deal) %>
+<%= link_to 'Edit Deal', edit_deal_path(@deal) %><br>
+
+<%= link_to 'Destroy', @deal, method: :delete, data: { confirm: "Are you sure?" } %>
