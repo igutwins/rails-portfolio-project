@@ -1,4 +1,6 @@
 class Deal < ActiveRecord::Base
+    belongs_to :user
+    belongs_to :industry
 
     def npv_func
         y1 = self.entry_cash*(1+self.interim_growth/100)

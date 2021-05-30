@@ -5,4 +5,4 @@
 
 <%= link_to 'Edit Deal', edit_deal_path(@deal) %><br>
 
-<%= link_to 'Destroy', @deal, method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to 'Destroy', @deal, method: :delete, data: { confirm: "Are you sure?" } %>
