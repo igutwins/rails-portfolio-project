@@ -1,5 +1,4 @@
-<h3>New Deal Form:</h3>
-<%= form_for(@deal) do |f| %>
+<%= form_for @deal do |f| %>
     <%= f.label :name, 'Deal Name:' %><br>
     <%= f.text_field :name %><br><br>
     
@@ -16,6 +15,8 @@
 
     <%= f.label :discount_rate, 'Discount Rate (%):' %><br>
     <%= f.number_field :discount_rate %><br><br><br>
+
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
     <%= f.submit %>
 <% end %>
