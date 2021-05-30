@@ -1,6 +1,6 @@
 <h1>This is the deals index</h1>
 <ol>
 <% @deals.each do |deal|  %>
-    <li><%= deal.name %></li>
+    <li><%= link_to deal.name, deal %></li>
     <% end %>
 </ol>

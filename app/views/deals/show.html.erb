@@ -1,2 +1,6 @@
 <h1>Deal Name: <%= @deal.name %></h1>
 <h1>Net Present Value: <%= @deal.npv %></h1>
+
+<%= link_to 'Back to Deals', deals_path %><br>
+
+<%= link_to 'Edit Deal', edit_deal_path(@deal) %>
