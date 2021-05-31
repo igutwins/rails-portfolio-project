@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_164922) do
+ActiveRecord::Schema.define(version: 2021_05_31_142942) do
+
+  create_table "deal_teams", force: :cascade do |t|
+  end
 
   create_table "deals", force: :cascade do |t|
     t.string "name"
@@ -19,9 +22,26 @@ ActiveRecord::Schema.define(version: 2021_05_29_164922) do
     t.decimal "terminal_growth"
     t.decimal "discount_rate"
     t.decimal "npv"
-    t.string "industry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "industry_id", null: false
+    t.integer "deal_team_id", null: false
+    t.index ["deal_team_id"], name: "index_deals_on_deal_team_id"
+    t.index ["industry_id"], name: "index_deals_on_industry_id"
   end
 
+  create_table "industries", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password"
+    t.string "title"
+    t.decimal "tenure"
+  end
+
+  add_foreign_key "deals", "deal_teams"
+  add_foreign_key "deals", "industries"
 end

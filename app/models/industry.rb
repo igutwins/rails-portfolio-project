@@ -1,4 +1,4 @@
 class Industry <ActiveRecord::Base
-    has_many: deals
+    has_many :deals
 
 end 

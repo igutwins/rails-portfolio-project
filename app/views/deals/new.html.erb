@@ -3,7 +3,9 @@
     <%= f.label :name, 'Deal Name:' %><br>
     <%= f.text_field :name %><br><br>
     
-    <%= f.label :industry, 'Industry:' %><br><br>
+    <%= f.label :industry, 'Industry:' %><br>
+    <%= f.select :industry_id, Industry.all %><br><br> ###needs work...
+
 
     <%= f.label :entry_cash, 'Entry Cash Flow ($mm):' %><br>
     <%= f.number_field :entry_cash %><br><br><br>

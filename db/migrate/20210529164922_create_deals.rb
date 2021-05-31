@@ -7,7 +7,6 @@ class CreateDeals < ActiveRecord::Migration[6.0]
       t.decimal :terminal_growth
       t.decimal :discount_rate
       t.decimal :npv
-      t.string :industry
 
       t.timestamps
     end
