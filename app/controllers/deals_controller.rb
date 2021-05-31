@@ -1,4 +1,5 @@
 class DealsController < ApplicationController
+    before_action :authentication_required
     before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
     def index
