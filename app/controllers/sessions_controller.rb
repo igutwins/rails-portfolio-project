@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
             if request.env["omniauth.auth"]["provider"] == "facebook"
                 oauth_email = request.env["omniauth.auth"]["extra"]["raw_info"]["email"]
             else
-                raise "".inspect
                 oauth_email = request.env["omniauth.auth"]["info"]["email"] #github pattern
             end  
             if user = User.find_by(:email => oauth_email)
