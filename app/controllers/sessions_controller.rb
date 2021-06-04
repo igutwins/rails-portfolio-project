@@ -18,34 +18,16 @@ class SessionsController < ApplicationController
                 redirect_to new_user_path 
             end
         else 
-            user = User.find_by(:email => params[:email])
+            user = User.find_by(:email => params[:user][:email])
             if user && user.authenticate(params[:password])
                 session[:user_id] = user.id
                 redirect_to deals_path
-            else 
+            else
+                raise ''.inspect 
                 redirect_to login_path
             end 
         end 
     end
-
-    def createfb 
-        @user = User.find_or_create_by(email: auth['info']['email']) do |u|
-            u.name = auth['info']['name']
-            u.email = auth['info']['email']
-        end 
-        session[:user_id] = @user.id
-        redirect_to deals_path
-    end 
-
-    def creategh 
-        @user = User.find_or_create_by(email: auth['info']['email']) do |u|
-            u.name = auth['info']['name']
-            u.email = auth['info']['email']
-        end 
-        session[:user_id] = @user.id
-        redirect_to deals_path
-    end 
-
 
     def destroy
         reset_session

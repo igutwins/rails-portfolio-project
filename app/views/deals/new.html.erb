@@ -4,7 +4,7 @@
     <%= f.text_field :name %><br><br>
     
     <%= f.label :industry, 'Industry:' %><br>
-    <%= f.select :industry_id, Industry.all %><br><br> ###needs work...
+    <%= collection_select(:deal, :industry_id, Industry.all, :id, :name, prompt: "Please choose an industry from the dropdown") %><br><br>
 
 
     <%= f.label :entry_cash, 'Entry Cash Flow ($mm):' %><br>

@@ -10,7 +10,7 @@
     <%= f.text_field :password %><br><br>
     
     <%= f.label :title, 'Enter Your Title:' %><br>
-    <%= f.text_field :title %><br><br>
+    <%= collection_select(:user, :title_id, Title.all, :id, :role, prompt: "Please select your title from the dropdown") %><br><br>
 
     <%= f.label :tenure, 'Years With Firm:' %><br>
     <%= f.number_field :tenure %><br><br>

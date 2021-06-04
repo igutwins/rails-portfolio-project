@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @titles = Title.all
     end 
 
     def create
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :email, :password, :title, :tenure)
+        params.require(:user).permit(:name, :email, :password, :title_id, :tenure)
     end
 
 end

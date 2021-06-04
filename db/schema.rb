@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_175809) do
+ActiveRecord::Schema.define(version: 2021_06_04_192325) do
 
   create_table "deal_teams", force: :cascade do |t|
   end
@@ -34,14 +34,21 @@ ActiveRecord::Schema.define(version: 2021_05_31_175809) do
     t.string "name"
   end
 
+  create_table "titles", force: :cascade do |t|
+    t.string "role"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "title"
     t.decimal "tenure"
     t.string "password_digest"
+    t.integer "title_id"
+    t.index ["title_id"], name: "index_users_on_title_id"
   end
 
   add_foreign_key "deals", "deal_teams"
   add_foreign_key "deals", "industries"
+  add_foreign_key "users", "titles"
 end

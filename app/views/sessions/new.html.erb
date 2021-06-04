@@ -1,7 +1,10 @@
 <h3>Login Form:</h3>
 <%= form_tag(login_path) do %>
-    <label>Email:</label><br>
-    <%= text_field_tag :email %><br><br>
+
+    <div class="form-group">
+      <%= label_tag(:name, "Your name:") %>
+      <%= collection_select(:user, :email, User.all, :email, :name, prompt: "Please select your username from this dropdown") %>
+    </div>
     
     <label>Password:</label><br>
     <%= text_field_tag :password %><br><br>

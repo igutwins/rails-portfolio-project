@@ -1,0 +1,7 @@
+<h3>New Industry Form:</h3>
+<%= form_for(@industry) do |f| %>
+    <%= f.label :name, 'Industry Name:' %><br>
+    <%= f.text_field :name %><br><br>
+
+    <%= f.submit %>
+<% end %>
