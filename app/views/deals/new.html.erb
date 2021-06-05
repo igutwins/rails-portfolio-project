@@ -19,5 +19,9 @@
     <%= f.label :discount_rate, 'Discount Rate (%):' %><br>
     <%= f.number_field :discount_rate %><br><br><br>
 
+        
+    <%= f.label :deal_team, 'Select Members of the Deal Team:' %><br>
+    <%= collection_select(:deal, :id, User.all, :id, :name, {}, {:multiple => true }) %><br><br>
+
     <%= f.submit %>
 <% end %>

@@ -1,5 +1,10 @@
 <h1>Deal Name: <%= @deal.name %></h1>
-<h1>Net Present Value: <%= @deal.npv %></h1>
+<h3>Net Present Value: $<%= "%0.1f" %[@deal.npv] %> million</h3>
+<h4>Key Assumptions:</h4>
+<h4>Discount Rate: <%= "%0.1f" %[@deal.discount_rate] %>%</h4>
+<h4>Year 1-5 Growth Rate: <%= "%0.1f" %[@deal.interim_growth] %>%</h4>
+<h4>Terminal Growth Rate: <%= "%0.1f" %[@deal.terminal_growth] %>%</h4>
+<h4>Entry Free Cash Flow: $<%= "%0.1f" %[@deal.entry_cash] %> million</h4>
 
 <%= link_to 'Back to Deals', deals_path %><br>
 

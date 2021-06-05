@@ -7,5 +7,4 @@
 
 <p>You are Logged in As <%= current_user.name %></p>
 
-<%= link_to "Add Deal", new_deal_path %>
-<%= link_to "Logout", logout_path %>
+<%= button_to "Add Deal", new_deal_path, method: "get" %>
