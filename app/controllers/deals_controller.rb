@@ -3,21 +3,19 @@ class DealsController < ApplicationController
     before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
     def index
-        if params[:user_id]
-            @deals = User.find(params[:user_id]).deals
-        else
-            @deals = Deal.all
-        end
+        @deals = Deal.all
+        @user = current_user
     end
 
     def show
+        
         #@deal = Deal.find(params[:id]) not needed with before action
     end
 
     def new #renders new form - no database work
         @deal = Deal.new
-        @dealteam = DealTeam.new
-        @dealteamusers = DealTeamsUser.new
+        @dt = DealTeam.new
+        @dtu = DealTeamsUser.new
     end 
     
     def edit #presents the edit form
@@ -25,10 +23,19 @@ class DealsController < ApplicationController
     end
 
     def create #creates new record in db
+        @dt = DealTeam.new
+        @dt.name = "test"
+        @dt.save
         @deal = Deal.new(deal_params) #strong params
+        @deal.deal_team = @dt
+        params[:deal][:id].each do |x|
+            if x != "" 
+                y = DealTeamsUser.new
+                y.deal_team = @dt
+                y.user = User.find(x)
+            end 
+        end
         @deal.npv = @deal.npv_func
-        @deal.deal_team = 1
-        raise "".inspect
 
         respond_to do |format|
             if @deal.save
@@ -75,7 +82,7 @@ class DealsController < ApplicationController
     end 
 
     def deal_params
-        params.require(:deal).permit(:name, :entry_cash, :interim_growth, :terminal_growth, :discount_rate, :industry_id, :deal_team_id)
+        params.require(:deal).permit(:name, :entry_cash, :interim_growth, :terminal_growth, :discount_rate, :industry_id)
     end 
 
 end

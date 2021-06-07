@@ -15,9 +15,4 @@ class ApplicationController < ActionController::Base
     end 
     helper_method :current_user
 
-    def titles_for_select
-        Title.all.collect { |t| [t.role] }
-    end 
-    helper_method :titles_for_select
-
 end

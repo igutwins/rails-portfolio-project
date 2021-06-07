@@ -1,0 +1,27 @@
+<h3><%=current_user.name%>'s New Deal Form:</h3>
+<%= form_for @deal do |f| %>
+
+    <%= f.label :name, 'Deal Name:' %><br>
+    <%= f.text_field :name %><br><br>
+
+    <%= f.label :industry, 'Industry:' %><br>
+    <%= collection_select(:deal, :industry_id, Industry.all, :id, :name, prompt: "Please choose an industry from the dropdown") %><br><br>
+
+
+    <%= f.label :entry_cash, 'Entry Cash Flow ($mm):' %><br>
+    <%= f.number_field :entry_cash %><br><br><br>
+
+    <%= f.label :interim_growth, 'Interim Growth Rate (%):' %><br>
+    <%= f.number_field :interim_growth %><br><br><br>
+
+    <%= f.label :terminal_growth, 'Terminal Growth Rate (%):' %><br>
+    <%= f.number_field :terminal_growth %><br><br><br>
+
+    <%= f.label :discount_rate, 'Discount Rate (%):' %><br>
+    <%= f.number_field :discount_rate %><br><br><br>
+
+    <%= f.label :deal_team, 'Select Members of the Deal Team:' %><br>
+    <%= collection_select(:deal, :id, User.all, :id, :name, {}, {:multiple => true }) %><br><br>
+
+    <%= f.submit %>
+<% end %>
