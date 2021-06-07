@@ -1,10 +1,8 @@
-<h1>This is the deals index</h1>
+<h1>This is a list of <%= current_user.name %>'s Deals!!!</h1>
 <ol>
 <% @deals.each do |deal|  %>
-    <li><%= link_to deal.name, deal %></li>
+    <li><%= link_to deal.name, user_deal_path(current_user.id, deal.id) %></li>
     <% end %>
 </ol>
 
-<p>You are Logged in As <%= current_user.name %></p>
-
-<%= button_to "Add Deal", new_deal_path, method: "get" %>
+<%= button_to "Add Deal", new_user_deal_path(current_user.id), method: "get" %>

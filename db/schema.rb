@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_192325) do
+ActiveRecord::Schema.define(version: 2021_06_07_163155) do
 
   create_table "deal_teams", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "deal_teams_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "deal_team_id", null: false
   end
 
   create_table "deals", force: :cascade do |t|
@@ -41,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_192325) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "title"
     t.decimal "tenure"
     t.string "password_digest"
     t.integer "title_id"

@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  resources :deals, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :users, only: [:new, :create]
+  #resources :deals, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :users, only: [:new, :create] do 
+   resources :deals, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  end 
+  resources :deals, only: [:index, :show]
   resources :industries, only: [:new, :create]
 end

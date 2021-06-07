@@ -6,8 +6,8 @@
 <h4>Terminal Growth Rate: <%= "%0.1f" %[@deal.terminal_growth] %>%</h4>
 <h4>Entry Free Cash Flow: $<%= "%0.1f" %[@deal.entry_cash] %> million</h4>
 
-<%= link_to 'Back to Deals', deals_path %><br>
+<%= link_to 'Back to Deals', user_deals_path %><br>
 
-<%= link_to 'Edit Deal', edit_deal_path(@deal) %><br>
+<%= link_to 'Edit Deal', edit_user_deal_path(@deal) %><br>
 
-<%= button_to 'Destroy', @deal, method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to 'Destroy', '/users/:user_id/deals/:id', method: :delete, data: { confirm: "Are you sure?" } %>
