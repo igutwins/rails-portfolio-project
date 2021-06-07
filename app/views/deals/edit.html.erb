@@ -1,24 +1,4 @@
-<%= form_for edit_user_deal_path(@deal) do |f| %>
-    <%= f.label :name, 'Deal Name:' %><br>
-    <%= f.text_field :name %><br><br>
-    
-    <%= f.label :industry, 'Industry:' %><br><br>
+<h1>Edit Deal:</h1>
+<%= render 'form' %> 
 
-    <%= f.label :entry_cash, 'Entry Cash Flow ($mm):' %><br>
-    <%= f.number_field :entry_cash %><br><br><br>
-
-    <%= f.label :interim_growth, 'Interim Growth Rate (%):' %><br>
-    <%= f.number_field :interim_growth %><br><br><br>
-
-    <%= f.label :terminal_growth, 'Terminal Growth Rate (%):' %><br>
-    <%= f.number_field :terminal_growth %><br><br><br>
-
-    <%= f.label :discount_rate, 'Discount Rate (%):' %><br>
-    <%= f.number_field :discount_rate %><br><br><br>
-
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-    <%= f.submit "Edit Deal" %>
-<% end %>
-
-<%= link_to "Back to Deals", user_deals_path %>
+<%= link_to "Back to Deals", user_deals_path(current_user.id) %>

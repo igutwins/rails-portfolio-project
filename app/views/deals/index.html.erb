@@ -1,7 +1,7 @@
 <h1>This is a list of <%= current_user.name %>'s Deals!!!</h1>
 <ol>
 <% @deals.each do |deal|  %>
-    <li><%= link_to deal.name, @deal %></li>
+    <li><%= link_to deal.name, deal %></li>
     <% end %>
 </ol>
 

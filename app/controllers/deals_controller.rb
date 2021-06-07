@@ -3,12 +3,16 @@ class DealsController < ApplicationController
     before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
     def index
-        @deals = Deal.all
-        @user = current_user
+        if current_user.title == Title.find_by(:role => "Managing Director")
+            @deals = Deal.all
+            @user = current_user
+        else 
+            @deals = current_user.deals
+            @user = current_user
+        end 
     end
 
     def show
-        
         #@deal = Deal.find(params[:id]) not needed with before action
     end
 
@@ -28,11 +32,13 @@ class DealsController < ApplicationController
         @dt.save
         @deal = Deal.new(deal_params) #strong params
         @deal.deal_team = @dt
+        DealTeamsUser.create(:deal_team => @dt, :user => current_user)
         params[:deal][:id].each do |x|
             if x != "" 
                 y = DealTeamsUser.new
                 y.deal_team = @dt
                 y.user = User.find(x)
+                y.save
             end 
         end
         @deal.npv = @deal.npv_func
