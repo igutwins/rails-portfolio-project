@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/auth/:provider/callback' => 'sessions#create'
+  get '/githublogin' => 'sessions#github'
   get '/logout' => 'sessions#destroy'
   resources :users, only: [:new, :create] do 
    resources :deals, only: [:index, :new]
