@@ -7,7 +7,6 @@
     <%= f.label :industry, 'Industry:' %><br>
     <%= collection_select(:deal, :industry_id, Industry.all, :id, :name, prompt: "Please choose an industry from the dropdown") %><br><br>
 
-
     <%= f.label :entry_cash, 'Entry Cash Flow ($mm):' %><br>
     <%= f.number_field :entry_cash %><br><br><br>
 
@@ -21,7 +20,13 @@
     <%= f.number_field :discount_rate %><br><br><br>
 
     <%= f.label :deal_team, 'Select Members of the Deal Team:' %><br>
-    <%= collection_select(:deal, :id, User.all, :id, :name, {}, {:multiple => true }) %><br><br>
+    <%= collection_select(:deal, :id, User.all, :id, :name, {}, {:multiple => true }) %><br><br><br>
+
+    
+    <%= fields_for :deal_team do |deal_team_fields| %>
+        <%= deal_team_fields.label :name, "Pick a Name for your Deal Team:" %><br>
+        <%= deal_team_fields.text_field :name %><br><br>
+      <% end %>
 
     <%= f.submit %>
 <% end %>

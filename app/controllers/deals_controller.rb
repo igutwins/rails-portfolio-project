@@ -28,7 +28,7 @@ class DealsController < ApplicationController
 
     def create #creates new record in db
         @dt = DealTeam.new
-        @dt.name = "test"
+        @dt.name = params[:deal_team][:name]
         @dt.save
         @deal = Deal.new(deal_params) #strong params
         @deal.deal_team = @dt
@@ -88,7 +88,7 @@ class DealsController < ApplicationController
     end 
 
     def deal_params
-        params.require(:deal).permit(:name, :entry_cash, :interim_growth, :terminal_growth, :discount_rate, :industry_id)
+        params.require(:deal).permit(:name, :entry_cash, :interim_growth, :terminal_growth, :discount_rate, :industry_id, deal_teams_attributes: [:name])
     end 
 
 end
