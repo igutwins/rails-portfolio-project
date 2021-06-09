@@ -4,9 +4,8 @@ class User <ActiveRecord::Base
     has_many :deal_teams_users
     has_many :deal_teams, through: :deal_teams_users
     has_many :deals, through: :deal_teams
-    #has_many :industries, through: :deals
 
-    validates :email, :presence => true
-    #validates :email, :unique => true
-
+    validates :email,
+        :presence => {:message => " can't be blank." },
+        :uniqueness => {:message => " already exists in the system."}
 end 

@@ -1,19 +1,44 @@
 <h3>New User Form:</h3>
 <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+    <div id="error-explanation">
+    <h2>
+    <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+    </h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+        </ul>
+        </div>
+        <% end %>
+    
+    <div class="form-group">
     <%= f.label :name, 'First and Last Name:' %><br>
     <%= f.text_field :name %><br><br>
+    </div>
     
+    <div class="form-group">
     <%= f.label :email, 'Email:' %><br>
     <%= f.text_field :email %><br><br>
+    </div>
 
+    <div class="form-group">
     <%= f.label :password, 'Choose a Password:' %><br>
     <%= f.text_field :password %><br><br>
+    </div>
     
+    <div class="form-group">
     <%= f.label :title, 'Enter Your Title:' %><br>
     <%= collection_select(:user, :title_id, Title.all, :id, :role, prompt: "Please select your title from the dropdown") %><br><br>
+    </div>
 
+    <div class="form-group">
     <%= f.label :tenure, 'Years With Firm:' %><br>
     <%= f.number_field :tenure %><br><br>
-
-    <%= f.submit %>
+    </div>
+    
+    <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+    </div>
 <% end %>
