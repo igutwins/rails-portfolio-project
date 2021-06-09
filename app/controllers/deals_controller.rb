@@ -3,9 +3,10 @@ class DealsController < ApplicationController
     before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
     def index
-        if current_user.title == Title.find_by(:role => "Managing Director")
-            @deals = Deal.all
+        if is_managing_director
+            @deals = current_user.deals
             @user = current_user
+            @alldeals = Deal.all
         else 
             @deals = current_user.deals
             @user = current_user
@@ -13,17 +14,15 @@ class DealsController < ApplicationController
     end
 
     def show
-        #@deal = Deal.find(params[:id]) not needed with before action
     end
 
-    def new #renders new form - no database work
+    def new 
         @deal = Deal.new
         @dt = DealTeam.new
         @dtu = DealTeamsUser.new
     end 
     
-    def edit #presents the edit form
-        #@deal = Deal.find(params[:id]) not needed with before action
+    def edit 
     end
 
     def create #creates new record in db
@@ -56,10 +55,9 @@ class DealsController < ApplicationController
 
     end
 
-    def update #handles the db update action
-        #@deal = Deal.find(params[:id])
+    def update 
         respond_to do |format|
-        if @deal.update(deal_params) && @deal.update(npv: @deal.npv_func)#strong params
+        if @deal.update(deal_params) && @deal.update(npv: @deal.npv_func)
             format.html { redirect_to @deal, notice: 'Deal was successfully updated.' }
             format.json { render :show, status: :ok, location: @deal }
         else 
@@ -67,15 +65,13 @@ class DealsController < ApplicationController
             format.json { render json: @deal.errors, status: :unprocessable_entity }
         end 
     end
-        #@deal.update(name: params[:deal][:name], entry_cash: params[:deal][:entry_cash], interim_growth: params[:deal][:interim_growth], terminal_growth: params[:deal][:terminal_growth], discount_rate: params[:deal][:discount_rate])
-        
-        #redirect_to deal_path(@deal)
+
     end
 
     def destroy
         @deal.destroy
         respond_to do |format|
-            format.html { redirect_to deals_path, notice: 'Deal was successfully deleted.' }
+            format.html { redirect_to user_deals_path, notice: 'Deal was successfully deleted.' }
             format.json { head :no_content }
         end 
     
@@ -90,5 +86,6 @@ class DealsController < ApplicationController
     def deal_params
         params.require(:deal).permit(:name, :entry_cash, :interim_growth, :terminal_growth, :discount_rate, :industry_id, deal_teams_attributes: [:name])
     end 
+
 
 end

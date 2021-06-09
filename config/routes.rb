@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/githublogin' => 'sessions#github'
   get '/logout' => 'sessions#destroy'
   resources :users, only: [:new, :create] do 
-   resources :deals, only: [:index, :new]
+   resources :deals, only: [:index, :new, :destroy]
   end 
-  resources :deals, only: [:show, :create, :edit, :update, :destroy]
+  resources :deals, only: [:show, :create, :edit, :update]
   resources :industries, only: [:new, :create]
 end

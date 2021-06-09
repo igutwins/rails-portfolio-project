@@ -10,4 +10,4 @@
 
 <%= link_to 'Edit Deal', edit_deal_path(@deal) %><br>
 
-<%= button_to 'Destroy', '/users/:user_id/deals/:id', method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to 'Destroy', user_deal_path(current_user.id), method: :delete, data: { confirm: "Are you sure?" } %>

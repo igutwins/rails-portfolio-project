@@ -5,4 +5,14 @@
     <% end %>
 </ol>
 
+<% if is_managing_director %>
+<h1>This is a list of Everyone's Deals!!!</h1>
+<ol>
+<% @alldeals.each do |deal|  %>
+    <li><%= link_to deal.name, deal %></li>
+    <% end %>
+</ol>
+
+<% end %>
+
 <%= button_to "Add Deal", new_user_deal_path(@user), method: "get" %>

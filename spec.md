@@ -8,7 +8,7 @@ Specs:
 - [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients) User has many Deals, Deals have many Users through DealTeams & DealTeamsUsers
 - [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity) DealTeams have a "name" user submittable attribute
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item) User must provide email, must be unique
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes) User with title "Managing Director" can see all deals, not only their own deals. Implemented as a helper method in application_controller.rb
 - [x] Include signup
 - [x] Include login
 - [x] Include logout

@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
     end 
     helper_method :current_user
 
+    def is_managing_director
+        current_user.title == Title.where(role: "Managing Director").first
+    end 
+    helper_method :is_managing_director
+
 end
