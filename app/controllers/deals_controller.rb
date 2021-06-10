@@ -4,17 +4,23 @@ class DealsController < ApplicationController
 
     def index
         if is_managing_director
-            @deals = current_user.deals
-            @user = current_user
             @alldeals = Deal.all
-        else 
-            @deals = current_user.deals
-            @user = current_user
         end 
+        @deals = current_user.deals
+        @user = current_user
     end
 
     def show
     end
+
+    def alpha
+        if is_managing_director
+            @alldeals = Deal.all.alpha
+        end 
+        @deals = current_user.deals.alpha
+        @user = current_user
+        render :index
+    end 
 
     def new 
         @deal = Deal.new

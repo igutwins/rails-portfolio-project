@@ -3,6 +3,8 @@ class Deal < ActiveRecord::Base
     belongs_to :industry
     has_many :users, through: :deal_team
     accepts_nested_attributes_for :deal_team
+
+    scope :alpha, -> { order(:name) }
     
     def npv_func
         y1 = self.entry_cash*(1+self.interim_growth/100)

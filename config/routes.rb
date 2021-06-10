@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   get '/githublogin' => 'sessions#github'
   get '/logout' => 'sessions#destroy'
+  get '/alpha' => 'deals#alpha'
   resources :users, only: [:new, :create] do 
    resources :deals, only: [:index, :new, :destroy]
   end 
